@@ -1,7 +1,29 @@
-const { application } = require('express');
 const express = require('express');
 const app = express();
 const PORT = 5000;
+
+
+const URL ="mongodb+srv://admin:admin@cluster0.sftel4p.mongodb.net/DAY3-EXPRESS?retryWrites=true&w=majority";
+//const URL_LOCAL = "mongoosedb://localhost:27017/express";
+
+const mongoose= require('mongoose');
+mongoose.connect(URL).then(()=>{
+    console.log('connected to mongodb...');
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log("Error", err.message);
+});
+// .catch(err =>{
+//     console.log('connection error:',err);
+//     });
+
+
+//catch error message only
+// mongoose.connection.on('error', (err) => {
+//     console.log("Error", err);
+// });
+
 
 app.use(express.json());  //middleware
 
